@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>People from windy planets</title></head>
+<body>
+<table>
+  <caption>People from windy planets</caption>
+  <thead><tr>{% for header in headers %}<th scope="col">{{ header }}</th>{% endfor %}</tr></thead>
+  <tbody>
+  {% for row in rows %}<tr>{% for value in row %}<td>{{ value|default_if_none:"NULL" }}</td>{% endfor %}</tr>{% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
