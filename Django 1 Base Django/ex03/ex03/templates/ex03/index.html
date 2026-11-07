@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ex03 : Fifty shades of bic.</title>
+    <style>
+        body { margin: 2rem; font-family: sans-serif; }
+        table { border-collapse: collapse; table-layout: fixed; }
+        th, td { width: 80px; min-width: 80px; max-width: 80px; height: 40px; padding: 0; box-sizing: border-box; }
+        caption { margin-bottom: 1rem; text-align: left; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Ex03 : Fifty shades of bic.</h1>
+    <table>
+        <caption>Cinquante nuances pour chacune des quatre couleurs</caption>
+        <thead>
+            <tr><th scope="col">noir</th><th scope="col">rouge</th><th scope="col">bleu</th><th scope="col">vert</th></tr>
+        </thead>
+        <tbody>
+            {% for shade in shades %}
+            <tr>
+                <td style="background-color: {{ shade.black }}" aria-label="Noir, nuance {{ forloop.counter }}"></td>
+                <td style="background-color: {{ shade.red }}" aria-label="Rouge, nuance {{ forloop.counter }}"></td>
+                <td style="background-color: {{ shade.blue }}" aria-label="Bleu, nuance {{ forloop.counter }}"></td>
+                <td style="background-color: {{ shade.green }}" aria-label="Vert, nuance {{ forloop.counter }}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

@@ -1,0 +1,11 @@
+body {
+    color: red;
+    max-width: 60rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font: 1rem/1.6 sans-serif;
+}
+a { color: inherit; }
+nav ul { display: flex; gap: 1.5rem; padding: 0; list-style: none; flex-wrap: wrap; }
+pre { white-space: pre-wrap; padding: 1rem; background: #f3f5f7; }
+code { font-family: monospace; }

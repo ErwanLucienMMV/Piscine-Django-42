@@ -1,0 +1,22 @@
+{% extends "ex01/base.html" %}
+{% block title %}Ex01 : Processus d’affichage d’une page statique.{% endblock %}
+{% block content %}
+<h1>Ex01 : Processus d’affichage d’une page statique.</h1>
+<ol>
+    <li>Le navigateur envoie une requête HTTP, par exemple <code>GET /ex01/affichage</code>,
+        au serveur de développement lancé par <code>python manage.py runserver</code>.</li>
+    <li>Django crée un objet <code>HttpRequest</code> et le fait passer par les middlewares.</li>
+    <li>Le résolveur consulte <code>d04/urls.py</code>, puis les routes de l’application
+        <code>ex01/urls.py</code>, pour trouver la vue correspondant exactement au chemin.</li>
+    <li>La vue reçoit la requête et appelle <code>render(request, "ex01/affichage.html")</code>.
+        Le chargeur trouve le template dans le dossier <code>templates</code> de l’application.</li>
+    <li>Le moteur de templates applique l’héritage et les inclusions, puis remplace les variables
+        par les valeurs du contexte. Le résultat est une chaîne de HTML.</li>
+    <li><code>render</code> construit une <code>HttpResponse</code>. Les middlewares de réponse
+        interviennent et le serveur renvoie le HTML avec le statut HTTP 200.</li>
+    <li>Le navigateur analyse le document, demande la feuille CSS indiquée par son lien et affiche
+        la page. Son contenu est statique, même si Django produit la réponse à chaque requête.</li>
+</ol>
+<p>Si aucune route ne correspond, Django répond avec le statut 404.</p>
+<p>Source : <a href="https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/">raccourcis HTTP de Django</a>.</p>
+{% endblock %}

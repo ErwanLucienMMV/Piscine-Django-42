@@ -36,3 +36,15 @@ python manage.py collectstatic --noinput
 ```
 
 `runserver` sert les ressources statiques des applications pendant le développement.
+
+Le formulaire d’`ex02` sauvegarde chaque entrée dans un fichier UTF-8 au format
+JSON Lines. `EX02_LOG_FILE`, dans `d04/settings.py`, définit son chemin complet :
+`ex02/entries.log`. Ce fichier est créé à la première soumission valide et reste
+présent après un redémarrage du serveur. Chaque ligne contient d’abord un horodatage
+ISO 8601 avec fuseau, puis le texte soumis. La page relit ce fichier pour afficher
+l’historique dans l’ordre des entrées ; une actualisation après soumission ne
+duplique pas l’entrée. Le fichier n’est pas versionné. Le supprimer réinitialise
+l’historique.
+
+La vue d’`ex03` calcule 50 nuances par colonne et les transmet au template.
+Les 200 couleurs sont distinctes ; chaque cellule mesure 80 × 40 pixels.

@@ -1,0 +1,18 @@
+{% extends "ex01/base.html" %}
+{% block title %}Ex01 : Django, framework web.{% endblock %}
+{% block content %}
+<h1>Ex01 : Django, framework web.</h1>
+<p>Django est un framework web libre écrit en Python. Il fournit un routage d’URL,
+    des vues, un moteur de templates, des formulaires et un ORM pour les données.
+    Son architecture sépare les données, le traitement d’une requête et la présentation.</p>
+<p>Le principe DRY (« Don’t repeat yourself ») encourage la réutilisation du code :
+    une définition commune sert à plusieurs pages. Les templates de cet exercice
+    partagent ainsi leur structure et leur navigation.</p>
+<h2>Quelques repères historiques</h2>
+<p>En 2003, Adrian Holovaty et Simon Willison commencent à développer en Python
+    les sites de World Online, une équipe liée à la presse de Lawrence, au Kansas.
+    Ils extraient progressivement leurs outils communs pour répondre aux délais des rédactions.</p>
+<p>Le framework devient libre en 2005 sous le nom de Django, en hommage au guitariste
+    Django Reinhardt. Une communauté internationale poursuit ensuite son développement.</p>
+<p>Source : <a href="https://docs.djangoproject.com/en/5.2/faq/general/">FAQ officielle de Django</a>.</p>
+{% endblock %}
