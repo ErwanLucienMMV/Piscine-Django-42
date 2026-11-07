@@ -19,7 +19,7 @@
   <h2 id="tips-heading" class="h3">Latest tips</h2>
   {% for tip in tips %}
   <article class="card card-body mb-3" id="tip-{{ tip.pk }}">
-    <h3 class="h6">{{ tip.author.username }}</h3>
+    <h3 class="h6">{{ tip.author.username }} ({{ tip.author.reputation }})</h3>
     <p class="text-secondary"><time datetime="{{ tip.date|date:'c' }}">{{ tip.date|date:'j M Y, H:i:s' }}</time></p>
     <div class="mb-3">{{ tip.content|linebreaks }}</div>
     <p class="mb-2"><span class="upvote-count">{{ tip.upvote_count }}</span> upvotes &middot; <span class="downvote-count">{{ tip.downvote_count }}</span> downvotes</p>

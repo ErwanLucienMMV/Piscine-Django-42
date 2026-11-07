@@ -3,7 +3,11 @@ from django.contrib.auth.admin import UserAdmin
 
 from .models import Tip, User, Vote
 
-admin.site.register(User, UserAdmin)
+@admin.register(User)
+class LifeTipsUserAdmin(UserAdmin):
+    list_display = (*UserAdmin.list_display, "reputation")
+    readonly_fields = (*UserAdmin.readonly_fields, "reputation")
+    fieldsets = (*UserAdmin.fieldsets, ("Reputation", {"fields": ("reputation",)}))
 
 
 class VoteInline(admin.TabularInline):

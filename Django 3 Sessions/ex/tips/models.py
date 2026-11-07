@@ -4,6 +4,19 @@ from django.db import models
 
 
 class User(AbstractUser):
+    @property
+    def reputation(self):
+        if not self.pk:
+            return 0
+        return Vote.objects.filter(tip__author_id=self.pk).aggregate(
+            score=models.Sum(models.Case(
+                models.When(value=Vote.UP, then=5),
+                models.When(value=Vote.DOWN, then=-2),
+                default=0,
+                output_field=models.IntegerField(),
+            ))
+        )["score"] or 0
+
     def can_delete_tip(self, tip):
         return self.is_active and (tip.author_id == self.pk or self.has_perm("tips.delete_tip"))
 

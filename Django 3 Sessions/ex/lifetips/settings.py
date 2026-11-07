@@ -43,6 +43,7 @@ DATABASES = {"default": {
     "NAME": os.environ.get("DJANGO_DB_PATH", str(BASE_DIR / "db.sqlite3")),
 }}
 AUTH_USER_MODEL = "tips.User"
+AUTHENTICATION_BACKENDS = ["tips.backends.ReputationBackend"]
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Europe/Paris"
 USE_I18N = True
