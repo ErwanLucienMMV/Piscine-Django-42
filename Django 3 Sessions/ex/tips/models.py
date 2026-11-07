@@ -4,7 +4,11 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+    def can_delete_tip(self, tip):
+        return self.is_active and (tip.author_id == self.pk or self.has_perm("tips.delete_tip"))
+
+    def can_downvote_tip(self, tip):
+        return self.is_active and (tip.author_id == self.pk or self.has_perm("tips.downvote_tip"))
 
 
 class Tip(models.Model):
@@ -14,6 +18,7 @@ class Tip(models.Model):
 
     class Meta:
         ordering = ["-date", "-pk"]
+        permissions = [("downvote_tip", "Can downvote tips")]
 
     def __str__(self):
         return self.content[:80]

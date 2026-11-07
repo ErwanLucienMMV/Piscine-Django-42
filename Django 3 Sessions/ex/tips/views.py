@@ -30,6 +30,11 @@ def home(request):
         tips = tips.annotate(current_vote=Subquery(
             Vote.objects.filter(tip=OuterRef("pk"), user=request.user).values("value")[:1]
         ))
+        may_delete = request.user.has_perm("tips.delete_tip")
+        may_downvote = request.user.has_perm("tips.downvote_tip")
+        for tip in tips:
+            tip.may_delete = tip.author_id == request.user.pk or may_delete
+            tip.may_downvote = tip.author_id == request.user.pk or may_downvote
     return render(request, "tips/home.html", {"form": form, "tips": tips})
 
 
@@ -41,6 +46,8 @@ def vote(request, pk, direction):
     value = Vote.UP if direction == "up" else Vote.DOWN
     with transaction.atomic():
         tip = get_object_or_404(Tip.objects.select_for_update(), pk=pk)
+        if value == Vote.DOWN and not request.user.can_downvote_tip(tip):
+            raise PermissionDenied
         previous = Vote.objects.filter(tip=tip, user=request.user).first()
         if previous and previous.value == value:
             previous.delete()
@@ -55,7 +62,10 @@ def vote(request, pk, direction):
 @require_POST
 @login_required
 def delete_tip(request, pk):
-    get_object_or_404(Tip, pk=pk).delete()
+    tip = get_object_or_404(Tip, pk=pk)
+    if not request.user.can_delete_tip(tip):
+        raise PermissionDenied
+    tip.delete()
     return redirect("home")
 
 

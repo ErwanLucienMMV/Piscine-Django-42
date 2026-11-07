@@ -29,14 +29,18 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-sm {% if tip.current_vote == 1 %}btn-success{% else %}btn-outline-success{% endif %}" aria-pressed="{% if tip.current_vote == 1 %}true{% else %}false{% endif %}">Upvote</button>
       </form>
+      {% if tip.may_downvote %}
       <form method="post" action="{% url 'vote' tip.pk 'down' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-sm {% if tip.current_vote == -1 %}btn-warning{% else %}btn-outline-warning{% endif %}" aria-pressed="{% if tip.current_vote == -1 %}true{% else %}false{% endif %}">Downvote</button>
       </form>
+      {% endif %}
+      {% if tip.may_delete %}
       <form method="post" action="{% url 'delete_tip' tip.pk %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
       </form>
+      {% endif %}
     </div>
     {% endif %}
   </article>
