@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Character and movie search</title></head>
+<body>
+<h1>Character and movie search</h1>
+{% if error %}<p>{{ error }}</p>{% endif %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Search</button>
+</form>
+{% if searched %}
+  {% if rows %}
+  <table>
+    <caption>Search results</caption>
+    <thead><tr><th scope="col">Character</th><th scope="col">Gender</th><th scope="col">Movie</th><th scope="col">Homeworld</th><th scope="col">Diameter</th></tr></thead>
+    <tbody>{% for row in rows %}<tr>{% for value in row %}<td>{{ value|default_if_none:"NULL" }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+  </table>
+  {% else %}<p>Nothing corresponding to your research</p>{% endif %}
+{% endif %}
+</body>
+</html>
