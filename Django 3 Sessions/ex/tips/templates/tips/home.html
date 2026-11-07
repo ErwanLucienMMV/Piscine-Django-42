@@ -1,5 +1,47 @@
 {% extends 'tips/base.html' %}
+{% load django_bootstrap5 %}
 {% block content %}
 <h1>Life Pro Tips</h1>
 <p class="lead">Small ideas for everyday life.</p>
+{% if user.is_authenticated %}
+<section class="card card-body mb-4" aria-labelledby="share-heading">
+  <h2 id="share-heading" class="h4">Share a tip</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary" type="submit">Post tip</button>
+  </form>
+</section>
+{% else %}
+<p><a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> to share your tips and vote.</p>
+{% endif %}
+<section aria-labelledby="tips-heading">
+  <h2 id="tips-heading" class="h3">Latest tips</h2>
+  {% for tip in tips %}
+  <article class="card card-body mb-3" id="tip-{{ tip.pk }}">
+    <h3 class="h6">{{ tip.author.username }}</h3>
+    <p class="text-secondary"><time datetime="{{ tip.date|date:'c' }}">{{ tip.date|date:'j M Y, H:i:s' }}</time></p>
+    <div class="mb-3">{{ tip.content|linebreaks }}</div>
+    <p class="mb-2"><span class="upvote-count">{{ tip.upvote_count }}</span> upvotes &middot; <span class="downvote-count">{{ tip.downvote_count }}</span> downvotes</p>
+    {% if user.is_authenticated %}
+    <div class="d-flex flex-wrap gap-2">
+      <form method="post" action="{% url 'vote' tip.pk 'up' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm {% if tip.current_vote == 1 %}btn-success{% else %}btn-outline-success{% endif %}" aria-pressed="{% if tip.current_vote == 1 %}true{% else %}false{% endif %}">Upvote</button>
+      </form>
+      <form method="post" action="{% url 'vote' tip.pk 'down' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm {% if tip.current_vote == -1 %}btn-warning{% else %}btn-outline-warning{% endif %}" aria-pressed="{% if tip.current_vote == -1 %}true{% else %}false{% endif %}">Downvote</button>
+      </form>
+      <form method="post" action="{% url 'delete_tip' tip.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+      </form>
+    </div>
+    {% endif %}
+  </article>
+  {% empty %}
+    <p>No tips yet. Share the first one!</p>
+  {% endfor %}
+</section>
 {% endblock %}

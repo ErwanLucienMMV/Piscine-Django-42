@@ -1,14 +1,62 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.db import transaction
+from django.db.models import Count, OuterRef, Q, Subquery
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST, require_http_methods
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, TipForm
+from .models import Tip, Vote
 
 
 @require_http_methods(["GET", "POST"])
 def home(request):
-    return render(request, "tips/home.html")
+    form = TipForm(request.POST if request.method == "POST" else None)
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            raise PermissionDenied
+        if form.is_valid():
+            tip = form.save(commit=False)
+            tip.author = request.user
+            tip.save()
+            return redirect("home")
+    tips = Tip.objects.select_related("author").annotate(
+        upvote_count=Count("votes", filter=Q(votes__value=Vote.UP)),
+        downvote_count=Count("votes", filter=Q(votes__value=Vote.DOWN)),
+    )
+    if request.user.is_authenticated:
+        tips = tips.annotate(current_vote=Subquery(
+            Vote.objects.filter(tip=OuterRef("pk"), user=request.user).values("value")[:1]
+        ))
+    return render(request, "tips/home.html", {"form": form, "tips": tips})
+
+
+@require_POST
+@login_required
+def vote(request, pk, direction):
+    if direction not in ("up", "down"):
+        raise PermissionDenied
+    value = Vote.UP if direction == "up" else Vote.DOWN
+    with transaction.atomic():
+        tip = get_object_or_404(Tip.objects.select_for_update(), pk=pk)
+        previous = Vote.objects.filter(tip=tip, user=request.user).first()
+        if previous and previous.value == value:
+            previous.delete()
+        elif previous:
+            previous.value = value
+            previous.save(update_fields=["value"])
+        else:
+            Vote.objects.create(tip=tip, user=request.user, value=value)
+    return redirect("home")
+
+
+@require_POST
+@login_required
+def delete_tip(request, pk):
+    get_object_or_404(Tip, pk=pk).delete()
+    return redirect("home")
 
 
 @require_http_methods(["GET", "POST"])
