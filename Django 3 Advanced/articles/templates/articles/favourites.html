@@ -1,4 +1,5 @@
 {% extends 'articles/base.html' %}
-{% block content %}<h2>Favourites</h2>
-<ul>{% for favourite in favourites %}<li><a href="{{ favourite.article.get_absolute_url }}">{{ favourite.article.title }}</a></li>{% empty %}<li>No favourites yet.</li>{% endfor %}</ul>
+{% load i18n %}
+{% block content %}<h2>{% translate 'Favourites' %}</h2>
+<ul>{% for favourite in favourites %}<li><a href="{{ favourite.article.get_absolute_url }}">{{ favourite.article.title }}</a></li>{% empty %}<li>{% translate 'No favourites yet.' %}</li>{% endfor %}</ul>
 {% endblock %}

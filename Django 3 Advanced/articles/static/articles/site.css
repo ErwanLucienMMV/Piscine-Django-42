@@ -1,0 +1,39 @@
+body { padding: 20px; background: #f5f5f5; color: #333; font: 14px Arial, sans-serif; }
+a { color: #337ab7; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.site-header { position: relative; padding-top: 42px; padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid #eee; }
+.site-header h1 { margin: 0; font-size: 36px; font-weight: 400; }
+.site-header small { color: #777; font-size: 24px; }
+.language-switch { position: absolute; right: 0; top: 4px; }
+.article-menu { min-height: 52px; margin-bottom: 20px; padding: 0; border: 1px solid #080808; border-radius: 4px; background: #222; align-items: stretch; }
+.menu-links { flex-wrap: wrap; }
+.article-menu .nav-link { padding: 16px 15px; border: 0; background: transparent; color: #aaa; font: inherit; }
+.article-menu .nav-link:hover, .article-menu .nav-link:focus { color: #fff; text-decoration: none; }
+.article-menu .active { background: #080808; color: #fff; }
+.home-link { font-size: 18px !important; line-height: 18px; }
+.account-menu { display: flex; align-items: center; gap: 14px; margin-left: auto; padding-left: 15px; padding-right: 15px; color: #aaa; }
+.menu-login { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 5px; margin-left: auto; padding: 8px 30px 8px 15px; }
+.menu-login .form-control { width: 200px; min-height: 34px; padding: 6px 12px; font-size: 14px; border-radius: 4px; }
+.btn { padding: 6px 12px; font-size: 14px; border-radius: 4px; }
+.btn-info { background: #5bc0de; border-color: #46b8da; color: #fff; }
+.btn-info:hover { background: #31b0d5; border-color: #269abc; color: #fff; }
+.btn-light { background: #fff; border-color: #ccc; color: #333; }
+.article-table { --bs-table-bg: transparent; --bs-table-color: #333; --bs-table-border-color: #ddd; margin-bottom: 20px; }
+.article-table th, .article-table td { padding: 8px 5px; vertical-align: top; }
+.article-table thead { border-bottom: 2px solid #ddd; }
+.article-table td:last-child { text-align: right; }
+.article-table tbody tr:last-child td { border-bottom: 0; }
+.login-errors { flex-basis: 100%; color: #ffd4d4; }
+.errorlist { padding-left: 20px; color: #a12622; }
+.login-errors .errorlist { color: inherit; margin-bottom: 0; }
+.content-form { max-width: 720px; }
+.content-form label { display: block; font-weight: bold; }
+.content-form input, .content-form textarea { display: block; width: 100%; padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px; }
+.content-form .helptext { display: block; color: #666; margin-top: 4px; }
+main h2 { font-size: 26px; margin-bottom: 20px; }
+@media (max-width: 800px) {
+  .menu-login { margin-left: 0; width: 100%; justify-content: flex-start; padding: 8px 15px; }
+  .account-menu { width: 100%; margin-left: 0; flex-wrap: wrap; }
+  .site-header small { display: block; margin-top: 5px; }
+  .menu-login .form-control { flex: 1 1 140px; width: 140px; }
+}

@@ -1,4 +1,4 @@
 {% extends 'articles/base.html' %}
 {% block content %}<h2>{{ heading }}</h2>
-<form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">{{ heading }}</button></form>
+<form class="content-form" method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-info" type="submit">{{ heading }}</button></form>
 {% endblock %}

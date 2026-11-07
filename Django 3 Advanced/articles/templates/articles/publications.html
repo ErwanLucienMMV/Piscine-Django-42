@@ -1,10 +1,11 @@
 {% extends 'articles/base.html' %}
+{% load i18n %}
 {% block content %}
-<h2>Publications</h2>
-<p><a href="{% url 'publish' %}">Publish a new article</a></p>
-<table>
-<thead><tr><th scope="col">Title</th><th scope="col">Synopsis</th><th scope="col">Created</th><th scope="col">Read</th></tr></thead>
-<tbody>{% for article in articles %}<tr><td>{{ article.title }}</td><td>{{ article.synopsis }}</td><td>{{ article.created }}</td><td><a href="{{ article.get_absolute_url }}">Read</a></td></tr>
-{% empty %}<tr><td colspan="4">No publications yet.</td></tr>{% endfor %}</tbody>
-</table>
+<h2>{% translate 'Publications' %}</h2>
+<p><a class="btn btn-info" href="{% url 'publish' %}">{% translate 'Publish a new article' %}</a></p>
+<div class="table-responsive"><table class="table article-table">
+<thead><tr><th scope="col">{% translate 'Title' %}</th><th scope="col">{% translate 'Synopsis' %}</th><th scope="col">{% translate 'Created' %}</th><th scope="col">{% translate 'Read' %}</th></tr></thead>
+<tbody>{% for article in articles %}<tr><td>{{ article.title }}</td><td>{{ article.synopsis }}</td><td>{{ article.created }}</td><td><a href="{{ article.get_absolute_url }}">{% translate 'Read' %}</a></td></tr>
+{% empty %}<tr><td colspan="4">{% translate 'No publications yet.' %}</td></tr>{% endfor %}</tbody>
+</table></div>
 {% endblock %}

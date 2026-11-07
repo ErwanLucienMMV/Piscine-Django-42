@@ -1,10 +1,11 @@
 {% extends 'articles/base.html' %}
+{% load i18n %}
 {% block content %}
 <article><h2>{{ article.title }}</h2>
-<dl><dt>Writer</dt><dd>{{ article.author }}</dd><dt>Created</dt><dd>{{ article.created }}</dd><dt>Synopsis</dt><dd>{{ article.synopsis }}</dd></dl>
+<dl><dt>{% translate 'Writer' %}</dt><dd>{{ article.author }}</dd><dt>{% translate 'Created' %}</dt><dd>{{ article.created }}</dd><dt>{% translate 'Synopsis' %}</dt><dd>{{ article.synopsis }}</dd></dl>
 <div>{{ article.content|linebreaks }}</div></article>
 {% if user.is_authenticated %}
-{% if is_favourite %}<p>Saved in your favourites.</p>{% else %}
-<form method="post" action="{% url 'add_favourite' article.pk %}">{% csrf_token %}{{ favourite_form }}<button type="submit">Add to favourites</button></form>
+{% if is_favourite %}<p>{% translate 'Saved in your favourites.' %}</p>{% else %}
+<form method="post" action="{% url 'add_favourite' article.pk %}">{% csrf_token %}{{ favourite_form }}<button class="btn btn-info" type="submit">{% translate 'Add to favourites' %}</button></form>
 {% endif %}{% endif %}
 {% endblock %}

@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DetailView, ListView, RedirectView
 from .forms import ArticleForm, FavouriteForm, MenuAuthenticationForm
 from .models import Article, UserFavouriteArticle
@@ -75,7 +76,7 @@ class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = "articles/form.html"
     success_url = reverse_lazy("login")
-    extra_context = {"heading": "Register"}
+    extra_context = {"heading": _("Register")}
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -87,7 +88,7 @@ class PublishView(LoginRequiredMixin, CreateView):
     model = Article
     form_class = ArticleForm
     template_name = "articles/form.html"
-    extra_context = {"heading": "Publish"}
+    extra_context = {"heading": _("Publish")}
 
     def form_valid(self, form):
         form.instance.author = self.request.user

@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Articles 1.0\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Share your writings"
+msgstr "Partagez vos écrits"
+
+msgid "Main navigation"
+msgstr "Navigation principale"
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "Last Articles"
+msgstr "Derniers articles"
+
+msgid "Favourites"
+msgstr "Favoris"
+
+msgid "Publications"
+msgstr "Publications"
+
+msgid "Register"
+msgstr "Inscription"
+
+#, python-format
+msgid "Logged as %(username)s"
+msgstr "Connecté en tant que %(username)s"
+
+msgid "Logout"
+msgstr "Déconnexion"
+
+msgid "Login"
+msgstr "Connexion"
+
+msgid "Username"
+msgstr "Nom d’utilisateur"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "username"
+msgstr "nom d’utilisateur"
+
+msgid "password"
+msgstr "mot de passe"
+
+msgid "Title"
+msgstr "Titre"
+
+msgid "Synopsis"
+msgstr "Résumé"
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Writer"
+msgstr "Auteur"
+
+msgid "Created"
+msgstr "Création"
+
+msgid "When"
+msgstr "Depuis"
+
+msgid "Read"
+msgstr "Lire"
+
+#, python-format
+msgid "%(elapsed)s ago"
+msgstr "Il y a %(elapsed)s"
+
+msgid "No articles yet."
+msgstr "Aucun article pour le moment."
+
+msgid "Publish"
+msgstr "Publier"
+
+msgid "Publish a new article"
+msgstr "Publier un nouvel article"
+
+msgid "No publications yet."
+msgstr "Aucune publication pour le moment."
+
+msgid "No favourites yet."
+msgstr "Aucun favori pour le moment."
+
+msgid "Saved in your favourites."
+msgstr "Enregistré dans vos favoris."
+
+msgid "Add to favourites"
+msgstr "Ajouter aux favoris"
+
+msgid "Use the login form in the menu."
+msgstr "Utilisez le formulaire de connexion du menu."
+
+

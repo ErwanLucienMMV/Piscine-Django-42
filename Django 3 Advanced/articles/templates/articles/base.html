@@ -1,21 +1,43 @@
+{% load i18n static article_tags %}
+{% get_current_language as current_language %}
 <!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Articles</title></head>
-<body>
-<header><h1>Articles <small>Share your writings</small></h1></header>
-<nav aria-label="Main navigation">
-<a href="{% url 'home' %}">Home</a> <a href="{% url 'articles' %}">Last Articles</a>
+<html lang="{{ current_language }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Articles{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'articles/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'articles/site.css' %}">
+</head>
+<body class="container-fluid">
+<header class="site-header">
+<div class="language-switch">
+{% if current_language == 'fr' %}<a href="{% language_url 'en' %}" lang="en">Switch to English</a>
+{% else %}<a href="{% language_url 'fr' %}" lang="fr">Passer en français</a>{% endif %}
+</div>
+<h1>Articles <small>{% translate 'Share your writings' %}</small></h1>
+</header>
+<nav class="navbar article-menu" aria-label="{% translate 'Main navigation' %}">
+<div class="nav menu-links">
+<a class="nav-link home-link" href="{% url 'home' %}" aria-label="{% translate 'Home' %}"><span aria-hidden="true">▣</span></a>
+<a class="nav-link{% if request.resolver_match.url_name == 'articles' %} active{% endif %}" href="{% url 'articles' %}">{% translate 'Last Articles' %}</a>
 {% if user.is_authenticated %}
-<a href="{% url 'favourites' %}">Favourites</a> <a href="{% url 'publications' %}">Publications</a>
-<span>Logged as {{ user.username }}</span>
-<form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Logout</button></form>
-{% else %}<a href="{% url 'register' %}">Register</a>
-<form method="post" action="{% url 'login' %}">{% csrf_token %}
-{{ login_form.username.label_tag }} {{ login_form.username }}
-{{ login_form.password.label_tag }} {{ login_form.password }}
-<button type="submit">Login</button>
-{{ login_form.errors }}
-</form>{% endif %}
+<a class="nav-link" href="{% url 'favourites' %}">{% translate 'Favourites' %}</a>
+<a class="nav-link" href="{% url 'publications' %}">{% translate 'Publications' %}</a>
+{% else %}<a class="nav-link" href="{% url 'register' %}">{% translate 'Register' %}</a>{% endif %}
+</div>
+{% if user.is_authenticated %}
+<div class="account-menu"><span>{% blocktranslate with username=user.username %}Logged as {{ username }}{% endblocktranslate %}</span>
+<form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="nav-link" type="submit">{% translate 'Logout' %}</button></form></div>
+{% else %}
+<form class="menu-login" method="post" action="{% url 'login' %}">{% csrf_token %}
+<label class="visually-hidden" for="{{ login_form.username.id_for_label }}">{{ login_form.username.label }}</label>{{ login_form.username }}
+<label class="visually-hidden" for="{{ login_form.password.id_for_label }}">{{ login_form.password.label }}</label>{{ login_form.password }}
+<button class="btn btn-light" type="submit">{% translate 'Login' %}</button>
+{% if login_form.errors %}<div class="login-errors" role="alert">{{ login_form.errors }}</div>{% endif %}
+</form>
+{% endif %}
 </nav>
 <main>{% block content %}{% endblock %}</main>
-</body></html>
+</body>
+</html>

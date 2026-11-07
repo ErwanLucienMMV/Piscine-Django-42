@@ -1,11 +1,13 @@
 {% extends 'articles/base.html' %}
-{% load article_tags %}
+{% load i18n article_tags %}
 {% block content %}
-<h2>Last Articles</h2>
-<table>
-<thead><tr><th scope="col">Title</th><th scope="col">Synopsis</th><th scope="col">Writer</th><th scope="col">Created</th><th scope="col">When</th><th scope="col">Read</th></tr></thead>
+<h2 class="visually-hidden">{% translate 'Last Articles' %}</h2>
+<div class="table-responsive">
+<table class="table article-table">
+<thead><tr><th scope="col">{% translate 'Title' %}</th><th scope="col">{% translate 'Synopsis' %}</th><th scope="col">{% translate 'Writer' %}</th><th scope="col">{% translate 'Created' %}</th><th scope="col">{% translate 'When' %}</th><th scope="col"><span class="visually-hidden">{% translate 'Read' %}</span></th></tr></thead>
 <tbody>{% for article in articles %}
-<tr><td>{{ article.title }}</td><td>{{ article.synopsis|short_synopsis }}</td><td>{{ article.author }}</td><td>{{ article.created }}</td><td>{{ article.created|timesince }} ago</td><td><a href="{{ article.get_absolute_url }}">Read</a></td></tr>
-{% empty %}<tr><td colspan="6">No articles yet.</td></tr>{% endfor %}</tbody>
+<tr><td>{{ article.title }}</td><td>{{ article.synopsis|short_synopsis }}</td><td>{{ article.author }}</td><td><time datetime="{{ article.created|date:'c' }}">{{ article.created }}</time></td><td>{% blocktranslate with elapsed=article.created|timesince %}{{ elapsed }} ago{% endblocktranslate %}</td><td><a class="btn btn-info" href="{{ article.get_absolute_url }}">{% translate 'Read' %}</a></td></tr>
+{% empty %}<tr><td colspan="6">{% translate 'No articles yet.' %}</td></tr>{% endfor %}</tbody>
 </table>
+</div>
 {% endblock %}
