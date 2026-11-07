@@ -1,0 +1,9 @@
+{% extends 'articles/base.html' %}
+{% block content %}
+<h2>Publications</h2>
+<table>
+<thead><tr><th scope="col">Title</th><th scope="col">Synopsis</th><th scope="col">Created</th><th scope="col">Read</th></tr></thead>
+<tbody>{% for article in articles %}<tr><td>{{ article.title }}</td><td>{{ article.synopsis }}</td><td>{{ article.created }}</td><td><a href="{{ article.get_absolute_url }}">Read</a></td></tr>
+{% empty %}<tr><td colspan="4">No publications yet.</td></tr>{% endfor %}</tbody>
+</table>
+{% endblock %}

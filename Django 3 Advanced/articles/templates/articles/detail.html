@@ -1,0 +1,6 @@
+{% extends 'articles/base.html' %}
+{% block content %}
+<article><h2>{{ article.title }}</h2>
+<dl><dt>Writer</dt><dd>{{ article.author }}</dd><dt>Created</dt><dd>{{ article.created }}</dd><dt>Synopsis</dt><dd>{{ article.synopsis }}</dd></dl>
+<div>{{ article.content|linebreaks }}</div></article>
+{% endblock %}

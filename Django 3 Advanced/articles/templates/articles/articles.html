@@ -1,0 +1,10 @@
+{% extends 'articles/base.html' %}
+{% block content %}
+<h2>Last Articles</h2>
+<table>
+<thead><tr><th scope="col">Title</th><th scope="col">Synopsis</th><th scope="col">Writer</th><th scope="col">Created</th><th scope="col">Read</th></tr></thead>
+<tbody>{% for article in articles %}
+<tr><td>{{ article.title }}</td><td>{{ article.synopsis }}</td><td>{{ article.author }}</td><td>{{ article.created }}</td><td><a href="{{ article.get_absolute_url }}">Read</a></td></tr>
+{% empty %}<tr><td colspan="5">No articles yet.</td></tr>{% endfor %}</tbody>
+</table>
+{% endblock %}

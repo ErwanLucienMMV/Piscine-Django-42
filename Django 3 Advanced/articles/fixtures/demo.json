@@ -1,0 +1,127 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "alice",
+      "password": "pbkdf2_sha256$1000000$nB788z1tkVhSdqxFQjxve6$13kBtm012z8Fd9FZjj52sVoLDCNForWT+t9YUjVfPi0=",
+      "first_name": "Alice",
+      "last_name": "",
+      "email": "alice@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2026-01-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "bob",
+      "password": "pbkdf2_sha256$1000000$pUclYakHM82ULkUMhmWgjy$Afid9cpVmmzIpXySd1TNE7SBwq5+BT9YQ+SmMTL0s5I=",
+      "first_name": "Bob",
+      "last_name": "",
+      "email": "bob@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2026-01-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "charlie",
+      "password": "pbkdf2_sha256$1000000$O6hV7I3rP4xlb7dSKNqvVe$VIThmDehbX6jd6H4x+UVpTVkwU2G9WoM80esAYCKeuo=",
+      "first_name": "Charlie",
+      "last_name": "",
+      "email": "charlie@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false,
+      "last_login": null,
+      "date_joined": "2026-01-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 1,
+    "fields": {
+      "title": "A morning at the pool",
+      "author": 1,
+      "created": "2026-10-21T09:00:00Z",
+      "synopsis": "A quiet swim before the city wakes up.",
+      "content": "The first length is always the coldest. By the second, the city and its noise feel a long way away."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 2,
+    "fields": {
+      "title": "Learning something new",
+      "author": 2,
+      "created": "2026-10-22T09:00:00Z",
+      "synopsis": "Small steps make difficult ideas easier to understand.",
+      "content": "Today I learned to break a problem into small pieces. Each finished piece makes the next one less intimidating."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 3,
+    "fields": {
+      "title": "The long way home",
+      "author": 3,
+      "created": "2026-10-23T09:00:00Z",
+      "synopsis": "A walk through familiar streets with a different view.",
+      "content": "I took the long way home and found a bookshop I had never noticed before. Sometimes a detour is the whole point."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 4,
+    "fields": {
+      "title": "Notes from the garden",
+      "author": 1,
+      "created": "2026-10-24T09:00:00Z",
+      "synopsis": "A little patience and a handful of seeds.",
+      "content": "The tomatoes finally turned red this morning. Growing things is mostly waiting, with occasional moments of surprise."
+    }
+  },
+  {
+    "model": "articles.article",
+    "pk": 5,
+    "fields": {
+      "title": "Writing together",
+      "author": 2,
+      "created": "2026-10-25T09:00:00Z",
+      "synopsis": "Stories become richer when we share them.",
+      "content": "Three friends met to write. Nobody had the same story, but everyone left with a new beginning."
+    }
+  },
+  {
+    "model": "articles.userfavouritearticle",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "article": 2
+    }
+  },
+  {
+    "model": "articles.userfavouritearticle",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "article": 3
+    }
+  }
+]

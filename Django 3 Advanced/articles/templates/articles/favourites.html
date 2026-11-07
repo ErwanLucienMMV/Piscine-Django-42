@@ -1,0 +1,4 @@
+{% extends 'articles/base.html' %}
+{% block content %}<h2>Favourites</h2>
+<ul>{% for favourite in favourites %}<li><a href="{{ favourite.article.get_absolute_url }}">{{ favourite.article.title }}</a></li>{% empty %}<li>No favourites yet.</li>{% endfor %}</ul>
+{% endblock %}
