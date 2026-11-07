@@ -1,0 +1,13 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #202f42; background: #f4f6fa; }
+body { margin: 0; }
+header { display: flex; gap: 1.5rem; background: #20334d; padding: 1.2rem 2rem; }
+header a { color: white; }
+main { max-width: 1040px; margin: 2rem auto; padding: 0 1.5rem; }
+section, aside { padding: 1.5rem; border: 1px solid #ccd5e1; border-radius: .5rem; background: white; }
+input, button { font: inherit; padding: .6rem; }
+button { cursor: pointer; background: #234f86; color: white; border: 0; border-radius: .25rem; }
+button:disabled { opacity: .5; cursor: default; }
+label { display: block; margin-bottom: .3rem; }
+a { color: #234f86; }
+[hidden] { display: none !important; }
+#account-errors, .error { color: #a21627; }

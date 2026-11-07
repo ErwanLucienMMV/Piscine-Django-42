@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Account · d09{% endblock %}
+{% block scripts %}<script src="{% static 'account/account.js' %}" defer></script>{% endblock %}
+{% block content %}
+<h1>Account</h1>
+<div id="account-errors" role="alert"></div>
+<section id="login-panel" {% if user.is_authenticated %}hidden{% endif %}>
+  <h2>Log in</h2>
+  <form id="login-form" method="post" action="{% url 'account' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log in</button>
+  </form>
+</section>
+<section id="logged-panel" {% if not user.is_authenticated %}hidden{% endif %}>
+  <h2>Your session</h2>
+  <p>Logged as <strong id="username">{{ user.get_username }}</strong></p>
+  <form id="logout-form" method="post" action="{% url 'account' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
+  <p><a href="/chat/">Choose a chat room</a></p>
+</section>
+{% endblock %}
