@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ex00 : Markdown Cheatsheet.</title>
+    <style>
+        body { max-width: 72rem; margin: 2rem auto; padding: 0 1rem; font: 1rem/1.6 sans-serif; color: #202b38; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #aab4c0; padding: .7rem; text-align: left; vertical-align: top; }
+        pre { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
+        code { background: #f0f3f6; padding: .1rem .2rem; }
+        caption { text-align: left; font-weight: bold; margin-bottom: .5rem; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Ex00 : Markdown Cheatsheet.</h1>
+    <p>Markdown permet de structurer un texte avec des signes simples. Voici la syntaxe de base,
+        puis les extensions courantes : leur disponibilité dépend du moteur utilisé.</p>
+    <table>
+        <caption>Syntaxe Markdown de base</caption>
+        <thead><tr><th scope="col">Élément</th><th scope="col">Syntaxe</th><th scope="col">Effet et remarques</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">Titres ATX</th><td><pre># Titre 1
+## Titre 2
+### Titre 3
+#### Titre 4
+##### Titre 5
+###### Titre 6</pre></td><td>Six niveaux de titres ; séparer le marqueur du titre par une espace.</td></tr>
+            <tr><th scope="row">Titres Setext</th><td><pre>Grand titre
+===========
+Sous-titre
+----------</pre></td><td>Les signes <code>=</code> et <code>-</code> soulignent les titres de niveaux 1 et 2.</td></tr>
+            <tr><th scope="row">Paragraphes et sauts</th><td><pre>Un paragraphe.
+
+Un autre paragraphe.
+Une ligne suivie de deux espaces.  
+La ligne suivante.</pre></td><td>Une ligne vide sépare les paragraphes. Deux espaces en fin de ligne produisent un saut de ligne ; CommonMark accepte aussi un antislash final.</td></tr>
+            <tr><th scope="row">Emphase</th><td><code>*léger* ou _léger_</code><br><code>**fort** ou __fort__</code><br><code>***les deux***</code></td><td><em>Italique</em>, <strong>gras</strong>, <strong><em>gras et italique</em></strong>.</td></tr>
+            <tr><th scope="row">Citation</th><td><pre>&gt; Une citation
+&gt;
+&gt; &gt; Une citation imbriquée</pre></td><td>Les citations peuvent contenir d’autres blocs, dont des listes.</td></tr>
+            <tr><th scope="row">Liste non ordonnée</th><td><pre>- Thé
+- Café
+  - Décaféiné</pre></td><td>Les marqueurs <code>*</code>, <code>+</code> et <code>-</code> sont possibles. Indenter les sous-listes sous le contenu parent.</td></tr>
+            <tr><th scope="row">Liste ordonnée</th><td><pre>1. Préparer
+2. Servir</pre></td><td>Une liste numérotée. CommonMark accepte aussi <code>1)</code>. Une ligne vide permet plusieurs paragraphes dans un élément.</td></tr>
+            <tr><th scope="row">Code en ligne</th><td><code>`print("bonjour")`</code><br><code>``un ` dans du code``</code></td><td>Les accents graves protègent les caractères de formatage.</td></tr>
+            <tr><th scope="row">Bloc de code indenté</th><td><pre>    def saluer():
+        return "Bonjour"</pre></td><td>Quatre espaces d’indentation créent un bloc de code.</td></tr>
+            <tr><th scope="row">Bloc de code délimité</th><td><pre>```python
+print("Bonjour")
+```</pre></td><td>En CommonMark : au moins trois accents graves ou tildes ; le langage est facultatif.</td></tr>
+            <tr><th scope="row">Séparation</th><td><pre>***
+---
+___</pre></td><td>Trois astérisques, tirets ou traits de soulignement forment une séparation. Isoler le bloc pour éviter un titre Setext.</td></tr>
+            <tr><th scope="row">Lien direct</th><td><code>[Documentation](https://docs.djangoproject.com/ "Django")</code></td><td>Texte cliquable, URL et titre facultatif entre guillemets.</td></tr>
+            <tr><th scope="row">Lien par référence</th><td><pre>[Documentation][doc]
+[doc]: https://docs.djangoproject.com/ "Django"</pre></td><td>La destination se définit ailleurs ; <code>[doc][]</code> est une référence abrégée.</td></tr>
+            <tr><th scope="row">Lien automatique</th><td><code>&lt;https://www.djangoproject.com/&gt;</code><br><code>&lt;contact@example.org&gt;</code></td><td>Une adresse entre chevrons devient un lien.</td></tr>
+            <tr><th scope="row">Image</th><td><code>![Montagne](montagne.png "Sommet")</code><br><code>![Montagne][photo]</code><br><code>[photo]: montagne.png</code></td><td>Le texte alternatif décrit l’image ; la syntaxe accepte aussi les références.</td></tr>
+            <tr><th scope="row">Échappement</th><td><code>\*texte sans emphase\*</code></td><td>Un antislash protège les signes de ponctuation, dont <code>\ ` * _ { } [ ] ( ) # + - . !</code>.</td></tr>
+            <tr><th scope="row">HTML et entités</th><td><code>&lt;sup&gt;2&lt;/sup&gt;</code><br><code>&amp;copy; &amp;amp; &amp;lt;</code></td><td>HTML brut et entités sont possibles ; un moteur peut filtrer le HTML pour la sécurité.</td></tr>
+        </tbody>
+    </table>
+    <h2>Extensions courantes</h2>
+    <p>Ces syntaxes ne font pas toutes partie de Markdown original ni de CommonMark.</p>
+    <table>
+        <caption>Fonctions dépendant du moteur</caption>
+        <thead><tr><th scope="col">Élément</th><th scope="col">Exemple</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">Tableau</th><td><pre>| Produit | Stock |
+| :------ | ----: |
+| Livre   |     8 |</pre></td></tr>
+            <tr><th scope="row">Texte barré</th><td><code>~~ancienne version~~</code></td></tr>
+            <tr><th scope="row">Tâches</th><td><pre>- [x] Lire
+- [ ] Écrire</pre></td></tr>
+            <tr><th scope="row">Note de bas de page</th><td><pre>Une remarque[^note].
+
+[^note]: Le détail de la remarque.</pre></td></tr>
+        </tbody>
+    </table>
+    <p>Références : <a href="https://daringfireball.net/projects/markdown/syntax">syntaxe Markdown originale</a>,
+        <a href="https://commonmark.org/help/">CommonMark</a> et
+        <a href="https://github.github.com/gfm/">GitHub Flavored Markdown</a>.</p>
+</main>
+</body>
+</html>

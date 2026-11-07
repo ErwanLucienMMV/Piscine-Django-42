@@ -1,0 +1,38 @@
+{% extends "ex01/base.html" %}
+{% load static %}
+{% block title %}Ex01 : Moteur de template.{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'ex01/style2.css' %}">{% endblock %}
+{% block content %}
+<h1>Ex01 : Moteur de template.</h1>
+<p>Le moteur Django transforme un fichier texte en document final. La vue fournit un contexte :
+    un dictionnaire dont les clés deviennent les noms disponibles dans le template.
+    Le moteur résout les variables, évalue les balises et assemble les templates.</p>
+<h2>Blocs et héritage</h2>
+<p>Un parent définit des emplacements nommés avec <code>block</code>. Un enfant utilise
+    <code>extends</code> en première balise et remplace les blocs souhaités ; les autres gardent
+    leur contenu parent. <code>include</code> insère un fragment comme notre navigation.</p>
+<pre><code>{% verbatim %}{% extends "ex01/base.html" %}
+{% block title %}Mon titre{% endblock %}
+{% block content %}&lt;p&gt;Mon texte&lt;/p&gt;{% endblock %}{% endverbatim %}</code></pre>
+<h2>Boucles for … in</h2>
+<p><code>for</code> parcourt une collection ; <code>empty</code> traite une collection vide.
+    <code>forloop.counter</code> donne le numéro de l’itération, à partir de 1.</p>
+<pre><code>{% verbatim %}{% for topic in topics %}
+    {{ forloop.counter }}. {{ topic }}
+{% empty %}
+    Aucun sujet.
+{% endfor %}{% endverbatim %}</code></pre>
+<ul>{% for topic in topics %}<li>{{ forloop.counter }}. {{ topic }}</li>{% empty %}<li>Aucun sujet.</li>{% endfor %}</ul>
+<h2>Conditions if</h2>
+<p><code>if</code>, <code>elif</code> et <code>else</code> choisissent un contenu selon une valeur,
+    une comparaison ou des opérateurs comme <code>and</code>, <code>or</code> et <code>not</code>.</p>
+<pre><code>{% verbatim %}{% if show_example %}Exemple visible.{% else %}Exemple masqué.{% endif %}{% endverbatim %}</code></pre>
+{% if show_example %}<p>Exemple visible.</p>{% else %}<p>Exemple masqué.</p>{% endif %}
+<h2>Variables et filtres</h2>
+<p>Les doubles accolades affichent une valeur ; la notation pointée accède à une clé ou un attribut.
+    Un filtre modifie sa présentation. Le HTML des valeurs est échappé par défaut pour protéger la page.</p>
+<pre><code>{% verbatim %}Bonjour {{ visitor }} !
+{{ visitor|upper }}{% endverbatim %}</code></pre>
+<p>Bonjour {{ visitor }} ! En majuscules : {{ visitor|upper }}.</p>
+<p>Source : <a href="https://docs.djangoproject.com/en/5.2/ref/templates/language/">langage de templates de Django</a>.</p>
+{% endblock %}

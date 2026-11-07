@@ -1,0 +1,38 @@
+# Base Django
+
+Chaque dossier `ex00` à `ex03` contient une version autonome du projet `d04`.
+Les exercices sont cumulatifs : la version `ex03` contient les quatre applications.
+Aucun import ne dépend d’un autre dossier de rendu.
+
+Depuis le dossier de l’exercice choisi, avec Python 3.10 ou supérieur :
+
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+python manage.py check
+python manage.py runserver
+```
+
+Sous PowerShell, activer l’environnement avec `.\.venv\Scripts\Activate.ps1`.
+Le projet utilise Django 5.2 LTS, SQLite dans sa configuration et le serveur de
+développement Django. Aucun modèle ni migration de données n’est nécessaire.
+La clé et `DEBUG = True` sont destinés au développement local.
+
+Pages disponibles selon la version choisie, avec ou sans slash final :
+
+| Application | URL |
+| --- | --- |
+| ex00 | `/ex00` |
+| ex01 | `/ex01/django`, `/ex01/affichage`, `/ex01/templates` |
+| ex02 | `/ex02` |
+| ex03 | `/ex03` |
+
+Les autres chemins répondent 404. Les liens de navigation utilisent la variante
+sans slash. Pour collecter les feuilles CSS dans `staticfiles/` :
+
+```sh
+python manage.py collectstatic --noinput
+```
+
+`runserver` sert les ressources statiques des applications pendant le développement.
