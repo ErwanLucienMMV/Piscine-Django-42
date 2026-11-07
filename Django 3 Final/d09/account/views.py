@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 
 @require_http_methods(["GET", "POST"])
@@ -18,7 +20,12 @@ def account(request):
             return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
         login(request, form.get_user())
     elif action == "logout":
+        session_key = request.session.session_key
         logout(request)
+        if session_key:
+            async_to_sync(get_channel_layer().group_send)(
+                "session." + session_key, {"type": "session.logout"}
+            )
     else:
         return JsonResponse({"errors": {"__all__": [{"message": "Unknown action."}]}}, status=400)
 

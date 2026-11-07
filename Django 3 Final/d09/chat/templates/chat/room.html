@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ room.name }} · d09{% endblock %}
+{% block scripts %}<script src="{% static 'chat/chat.js' %}" defer></script>{% endblock %}
+{% block content %}
+<h1>{{ room.name }}</h1>
+<p>Chatting as <strong>{{ user.get_username }}</strong>. <a href="{% url 'chat:rooms' %}">All rooms</a></p>
+<p id="connection-status" role="status">Connecting…</p>
+<div id="chat" data-socket-path="/ws/chat/{{ room.pk }}/">
+  <section aria-label="Conversation">
+    <h2>Messages</h2>
+    <div id="messages" role="log" aria-live="polite"></div>
+    <form id="message-form">
+      <p><label for="message">Your message</label><input id="message" maxlength="2000" required autocomplete="off"></p>
+      <button type="submit" disabled>Send</button>
+    </form>
+    <p id="chat-error" class="error" role="alert"></p>
+  </section>
+</div>
+{% endblock %}
