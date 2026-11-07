@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.log
+*.wiki
+ex01/local_lib/
+ex01/example/
+ex04/django_venv/
+ex05/db.sqlite3
