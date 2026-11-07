@@ -1,0 +1,13 @@
+SECRET_KEY = "django-insecure-local-hello-world-exercise-only"
+DEBUG = True
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
+ROOT_URLCONF = "hello_world.urls"
+INSTALLED_APPS = []
+MIDDLEWARE = ["django.middleware.common.CommonMiddleware"]
+TEMPLATES = []
+WSGI_APPLICATION = "hello_world.wsgi.application"
+ASGI_APPLICATION = "hello_world.asgi.application"
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_TZ = True
