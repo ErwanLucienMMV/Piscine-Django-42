@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "d05-local-development-only")
 DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
-INSTALLED_APPS = ['ex00', 'ex01', 'ex02', 'ex03', 'ex04', 'ex05']
+INSTALLED_APPS = ['ex00', 'ex01', 'ex02', 'ex03', 'ex04', 'ex05', 'ex06', 'ex07']
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.common.CommonMiddleware",
